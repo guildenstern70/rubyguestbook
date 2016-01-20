@@ -1,0 +1,63 @@
+<% content_for :nav do %>
+    <ul class="nav nav-pills pull-right">
+      <li role="presentation"><a href="/">Home</a></li>
+      <li role="presentation"><a href="/entry/list">Messaggi</a></li>
+      <li role="presentation" class="active"><a href="/users/new">Registrazione</a></li>
+      <li role="presentation"><a href="/static/about">?</a></li>
+    </ul>
+<% end %>
+
+<div class="container">
+
+  <h3>
+    Registrazione al GuestBook
+  </h3>
+
+  <div class="row"><div class="col-md-5">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <%= form_for @user do |f| %>
+
+          <div class="row">
+            <div class="col-md-4"><%= f.label :username, 'Username:' %></div>
+            <div class="col-md-6"><%= f.text_field :username %></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4"><%= f.label :password, 'Password:' %></div>
+            <div class="col-md-6"><%= f.password_field :password %></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4"><%= f.label :password_confirmation, 'Ripeti Password:' %></div>
+            <div class="col-md-6"><%= f.password_field :password_confirmation %></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-10">&nbsp;</div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-10"><%= f.submit('Registrati') %></div>
+          </div>
+
+      <% end %>
+    </div>
+  </div></div></div>
+
+  <% if @user.errors.any? %>
+
+      <div class="row">
+        <div class="col-md-8">
+          <div class="alert alert-danger" role="alert">
+            <ul>
+              <% @user.errors.full_messages.each do |error_msg| %>
+                  <li><%= error_msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+  <% end %>
+
+</div>

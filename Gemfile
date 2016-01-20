@@ -11,7 +11,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Font Awesome
-gem 'font-awesome-sass'
+gem 'font-awesome-rails'
 
 # Bootstrap
 gem 'bootstrap-sass'
