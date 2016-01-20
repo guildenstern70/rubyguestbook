@@ -1,16 +1,8 @@
-<% content_for :nav do %>
-    <ul class="nav nav-pills pull-right">
-      <li role="presentation"><a href="/">Home</a></li>
-      <li role="presentation"><a href="/entry/list">Messaggi</a></li>
-      <li role="presentation" class="active"><a href="/users/new">Registrazione</a></li>
-      <li role="presentation"><a href="/static/about">?</a></li>
-    </ul>
-<% end %>
+<%= render 'layouts/navbar' %>
 
 <div class="container">
-
   <p>
-    <%= fa_icon "check" %>
+    <%= fa_icon 'check' %>
     Sei correttamente registrato al GuestBook. <br>
     La tua e-Mail &egrave;: <a href="mailto:<%= @user.username %>"><%= @user.username %></a>
   </p>

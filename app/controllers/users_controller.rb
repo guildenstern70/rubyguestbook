@@ -2,12 +2,17 @@ class UsersController < ApplicationController
 
   def login
 
-    @user = User.authenticate(params[:username], params[:password])
-    if @user
-      render :show
+    if params[:user]
+      @user = User.authenticate(params[:user])
+      if @user
+        redirect_to controller: 'entry', action: 'list'
+      else
+        @errors = true
+        @user = User.new
+        render :login
+      end
     else
-      @errors = true
-      render :index
+      @user = User.new
     end
 
   end
@@ -16,19 +21,14 @@ class UsersController < ApplicationController
   end
 
   def show
-
     @user = User.find(id=params[:id])
-
   end
 
   def new
-
     @user = User.new
-
   end
 
   def create
-
     user_data = params.require(:user).permit(:username, :password, :password_confirmation)
     @user = User.new(user_data)
     if @user.valid?
@@ -37,9 +37,9 @@ class UsersController < ApplicationController
     else
       render :new
     end
-
   end
 
   def list
   end
+
 end

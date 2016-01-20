@@ -19,9 +19,9 @@ class User < ActiveRecord::Base
             format: { with: VALID_EMAIL_REGEX },
             uniqueness: true
 
-  def User.authenticate(username, password)
-    password_digest = User.get_hash(password)
-    User.find_by(username: username, password: password_digest)
+  def User.authenticate(user)
+    password_digest = User.get_hash(user['password'])
+    User.find_by(username: user['username'], password: password_digest)
   end
 
   def User.get_hash(password)

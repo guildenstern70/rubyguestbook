@@ -1,11 +1,4 @@
-<% content_for :nav do %>
-    <ul class="nav nav-pills pull-right">
-      <li role="presentation"><a href="/">Home</a></li>
-      <li role="presentation"><a href="/entry/list">Messaggi</a></li>
-      <li role="presentation" class="active"><a href="/users/new">Registrazione</a></li>
-      <li role="presentation"><a href="/static/about">?</a></li>
-    </ul>
-<% end %>
+<%= render 'layouts/navbar' %>
 
 <div class="container">
 
@@ -38,7 +31,10 @@
           </div>
 
           <div class="row">
-            <div class="col-md-10"><%= f.submit('Registrati') %></div>
+            <div class="col-md-10"><%= f.submit('Registrati') %>
+            &nbsp;
+            <%= link_to 'Accedi', controller: 'users', action: 'login' %>
+            </div>
           </div>
 
       <% end %>

@@ -1,0 +1,36 @@
+<div class="container topspacer">
+  <ul class="nav nav-pills pull-right">
+
+    <!-- HOME -->
+    <% if params[:action] == 'home' %>
+        <li role="presentation" class="active"><a href="/">
+          Home
+        </a></li>
+    <% else %>
+        <li role="presentation"><a href="/">Home</a></li>
+    <% end %>
+
+    <!-- MESSAGGI -->
+    <li role="presentation"><a href="/entry/list">Messaggi</a></li>
+
+    <!-- LOGIN -->
+    <% if params[:action] == 'login' %>
+    <li role="presentation" class="active"><a href="/users/login">Accedi</a></li>
+    <% else %>
+    <li role="presentation"><a href="/users/login">Accedi</a></li>
+    <% end %>
+
+
+    <!-- ABOUT -->
+    <% if params[:action] == 'about' %>
+    <li role="presentation" class="active"><a href="/static/about">?</a></li>
+    <% else %>
+        <li role="presentation"><a href="/static/about">?</a></li>
+    <% end %>
+
+  </ul>
+</div>
+<div class="topspacer"></div>
+
+
+

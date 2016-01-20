@@ -4,7 +4,14 @@ Rails.application.routes.draw do
 
   # Users
   resources :users do
+    collection do
+      get 'login'
+      post 'login'
+    end
 
+    member do
+      post 'logout'
+    end
   end
 
   # Entry
