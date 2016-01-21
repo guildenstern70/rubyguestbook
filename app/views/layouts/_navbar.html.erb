@@ -11,19 +11,22 @@
     <% end %>
 
     <!-- MESSAGGI -->
-    <li role="presentation"><a href="/entry/list">Messaggi</a></li>
+    <% if params[:action] == 'index' %>
+        <li role="presentation" class="active"><a href="/entries">Messaggi</a></li>
+    <% else %>
+        <li role="presentation"><a href="/entries">Messaggi</a></li>
+    <% end %>
 
     <!-- LOGIN -->
     <% if params[:action] == 'login' %>
-    <li role="presentation" class="active"><a href="/users/login">Accedi</a></li>
+        <li role="presentation" class="active"><a href="/users/login">Accedi</a></li>
     <% else %>
-    <li role="presentation"><a href="/users/login">Accedi</a></li>
+        <li role="presentation"><a href="/users/login">Accedi</a></li>
     <% end %>
-
 
     <!-- ABOUT -->
     <% if params[:action] == 'about' %>
-    <li role="presentation" class="active"><a href="/static/about">?</a></li>
+        <li role="presentation" class="active"><a href="/static/about">?</a></li>
     <% else %>
         <li role="presentation"><a href="/static/about">?</a></li>
     <% end %>

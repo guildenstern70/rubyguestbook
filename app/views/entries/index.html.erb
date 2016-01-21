@@ -1,0 +1,42 @@
+<%= render 'layouts/navbar' %>
+
+<% if @entries.blank? %>
+
+    <p>
+      Al momento non ci sono messaggi nel GuestBook.
+    </p>
+
+<% else %>
+
+    <table class="table table-striped">
+
+      <th width="30%">&nbsp;</th>
+      <th width="30%">Autore</th>
+      <th width="70%">Messaggio</th>
+
+      <% @entries.each do |msg| %>
+
+          <tr>
+            <td>
+              <%= msg.created_at.to_formatted_s(:it_datetime) %>
+            </td>
+            <td>
+              <% if msg.user.nil? %>
+                  Utente Anonimo
+              <% else %>
+                  <%= msg.user.username %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to msg.title, action: 'show', id: msg %>
+            </td>
+          </tr>
+
+      <% end %>
+
+    </table>
+
+<% end %>
+
+<%= link_to 'Aggiungi un nuovo messaggio', action: 'new' %>
+

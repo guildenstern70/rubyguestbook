@@ -1,0 +1,75 @@
+<%= render 'layouts/navbar' %>
+
+<div class="container">
+
+  <h3>
+    <%= @entry.title %>
+  </h3>
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-body">
+
+              <div class="row">
+                <div class="col-md-4"><i>Titolo:</i></div>
+                <div class="col-md-8"><b><%= @entry.title %></b></div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4"><i>Messaggio:</i></div>
+                <div class="col-md-8">
+                  <textarea cols="40" rows="10" readonly="readonly"><%= @entry.message %>
+                  </textarea>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4"><i>Creato da:</i></div>
+                <div class="col-md-8"><%= @entry.user.username %></div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4"><i>Data creazione:</i></div>
+                <div class="col-md-8"><%= @entry.created_at %></div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4"><i>Data ultima modifica:</i></div>
+                <div class="col-md-8"><%= @entry.updated_at %></div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">&nbsp;</div>
+              </div>
+
+              <% if @entry.user.id == session[:current_user_id] %>
+                  <button class="button">Modifica</button>
+              <% end %>
+
+          </div>
+        </div>
+      <%= link_to 'Torna alla lista messaggi...', action: 'index' %>
+      </div>
+
+
+    </div>
+
+    <% if @entry.errors.any? %>
+
+        <div class="row">
+          <div class="col-md-8">
+            <div class="alert alert-danger" role="alert">
+              <ul>
+                <% @entry.errors.full_messages.each do |error_msg| %>
+                    <li><%= error_msg %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+    <% end %>
+
+  </div>
+</div>

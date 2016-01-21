@@ -14,13 +14,10 @@ Rails.application.routes.draw do
     end
   end
 
-  # Entry
-  get 'entry/list'
-  get 'entry/show'
-  get 'entry/create'
-  get 'entry/edit'
-  get 'entry/delete'
-  get 'entry/new'
+  # Entries
+  resources :entries do
+
+  end
 
   # Static
   get 'static/home'
