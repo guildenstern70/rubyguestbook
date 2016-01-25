@@ -1,42 +1,68 @@
 <%= render 'layouts/navbar' %>
 
-<% if @entries.blank? %>
+<div class="container topspacer">
 
-    <p>
-      Al momento non ci sono messaggi nel GuestBook.
-    </p>
+  <div>
+    <%= link_to 'Firma il Libro degli Ospiti', { action: 'new' },
+                class: 'btn btn-success' %>
+  </div>
 
-<% else %>
+  <div class="topspacer">
 
-    <table class="table table-striped">
+    <% if @entries.blank? %>
 
-      <th width="30%">&nbsp;</th>
-      <th width="30%">Autore</th>
-      <th width="70%">Messaggio</th>
+        <p>
+          Al momento non ci sono messaggi nel GuestBook.
+        </p>
 
-      <% @entries.each do |msg| %>
+    <% else %>
 
-          <tr>
-            <td>
-              <%= msg.created_at.to_formatted_s(:it_datetime) %>
-            </td>
-            <td>
-              <% if msg.user.nil? %>
-                  Utente Anonimo
-              <% else %>
-                  <%= msg.user.username %>
-              <% end %>
-            </td>
-            <td>
-              <%= link_to msg.title, action: 'show', id: msg %>
-            </td>
-          </tr>
+        <table class="table table-striped">
 
-      <% end %>
+          <th width="20%">&nbsp;</th>
+          <th width="30%">Autore</th>
+          <th width="45%">Messaggio</th>
+          <% if is_logged_in? %>
+          <th width="5%">&nbsp;</th>
+          <% end %>
 
-    </table>
+          <% @entries.each do |msg| %>
 
-<% end %>
+              <tr>
+                <td>
+                  <%= msg.created_at.to_formatted_s(:it_datetime) %>
+                </td>
+                <td>
+                  <% if msg.user.nil? %>
+                      Utente Anonimo
+                  <% else %>
+                      <%= msg.user.username %>
+                  <% end %>
+                </td>
+                <td>
+                  <strong><%= link_to msg.title, { action: 'show', id: msg }  %></strong>
+                  <br>
+                  <textarea cols="60" rows="4" readonly="readonly"><%= msg.message %>
+                  </textarea>
+                </td>
+                <% if is_logged_in? %>
+                <td>
+                  <div>
+                    <%= link_to msg, method: :delete, :data => {:confirm => 'Sei sicuro di voler cancellare il messaggio?'} do %>
+                      <%= fa_icon 'remove' %>
+                    <% end %>
+                  </div>
+                </td>
+                <% end %>
+              </tr>
 
-<%= link_to 'Aggiungi un nuovo messaggio', action: 'new' %>
+          <% end %>
+
+        </table>
+
+    <% end %>
+  </div>
+
+</div>
+
 

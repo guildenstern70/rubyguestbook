@@ -18,6 +18,11 @@ class UsersController < ApplicationController
 
     end
 
+    def logout
+        reset_session
+        redirect_to controller: 'static', action: 'home'
+    end
+
     def index
     end
 

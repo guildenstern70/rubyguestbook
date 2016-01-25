@@ -1,37 +1,58 @@
 <div class="container topspacer">
-  <ul class="nav nav-pills pull-right">
 
-    <!-- HOME -->
-    <% if params[:action] == 'home' %>
-        <li role="presentation" class="active"><a href="/">
-          Home
-        </a></li>
-    <% else %>
-        <li role="presentation"><a href="/">Home</a></li>
-    <% end %>
+  <div class="row">
 
-    <!-- MESSAGGI -->
-    <% if params[:action] == 'index' %>
-        <li role="presentation" class="active"><a href="/entries">Messaggi</a></li>
-    <% else %>
-        <li role="presentation"><a href="/entries">Messaggi</a></li>
-    <% end %>
+    <div class="col-md-4">
 
-    <!-- LOGIN -->
-    <% if params[:action] == 'login' %>
-        <li role="presentation" class="active"><a href="/users/login">Accedi</a></li>
-    <% else %>
-        <li role="presentation"><a href="/users/login">Accedi</a></li>
-    <% end %>
+      <h4 class="text-primary"><strong>RUBY-GUESTBOOK</strong></h4>
 
-    <!-- ABOUT -->
-    <% if params[:action] == 'about' %>
-        <li role="presentation" class="active"><a href="/static/about">?</a></li>
-    <% else %>
-        <li role="presentation"><a href="/static/about">?</a></li>
-    <% end %>
+    </div>
+    <div class="col-md-8">
 
-  </ul>
+      <ul class="nav nav-pills pull-right">
+        <!-- HOME -->
+        <% if params[:action] == 'home' %>
+            <li role="presentation" class="active"><a href="/">
+              Home
+            </a></li>
+        <% else %>
+            <li role="presentation"><a href="/">Home</a></li>
+        <% end %>
+
+        <!-- MESSAGGI -->
+        <% if params[:action] == 'index' %>
+            <li role="presentation" class="active"><a href="/entries">Libro degli Ospiti</a></li>
+        <% else %>
+            <li role="presentation"><a href="/entries">Libro degli Ospiti</a></li>
+        <% end %>
+
+        <!-- LOGIN / LOGOUT -->
+        <% if not is_logged_in? %>
+          <% if params[:action] == 'login' %>
+              <li role="presentation" class="active"><a href="/users/login">Accedi</a></li>
+          <% else %>
+              <li role="presentation"><a href="/users/login">Accedi</a></li>
+          <% end %>
+        <% else %>
+            <li role="presentation">
+              <%= link_to 'Logout', controller: 'users', action: 'logout', id: session[:current_user_id] %>
+            </li>
+        <% end %>
+
+
+        <!-- ABOUT -->
+        <% if params[:action] == 'about' %>
+            <li role="presentation" class="active"><a href="/static/about">?</a></li>
+        <% else %>
+            <li role="presentation"><a href="/static/about">?</a></li>
+        <% end %>
+
+      </ul>
+
+    </div>
+
+  </div>
+
 </div>
 <div class="topspacer"></div>
 

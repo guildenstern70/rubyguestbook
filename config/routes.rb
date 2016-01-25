@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     end
 
     member do
-      post 'logout'
+      get 'logout'
     end
   end
 

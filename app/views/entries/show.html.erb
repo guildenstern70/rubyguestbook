@@ -12,12 +12,12 @@
         <div class="panel-body">
 
               <div class="row">
-                <div class="col-md-4"><i>Titolo:</i></div>
+                <div class="col-md-4"><em>Titolo:</em></div>
                 <div class="col-md-8"><b><%= @entry.title %></b></div>
               </div>
 
               <div class="row">
-                <div class="col-md-4"><i>Messaggio:</i></div>
+                <div class="col-md-4"><em>Messaggio:</em></div>
                 <div class="col-md-8">
                   <textarea cols="40" rows="10" readonly="readonly"><%= @entry.message %>
                   </textarea>
@@ -25,17 +25,23 @@
               </div>
 
               <div class="row">
-                <div class="col-md-4"><i>Creato da:</i></div>
-                <div class="col-md-8"><%= @entry.user.username %></div>
+                <div class="col-md-4"><em>Creato da:</em></div>
+                <div class="col-md-8">
+                <% if @entry.user.nil? %>
+                    Anonimo
+                <% else %>
+                    <%= @entry.user.username %>
+                <% end %>
+                </div>
               </div>
 
               <div class="row">
-                <div class="col-md-4"><i>Data creazione:</i></div>
+                <div class="col-md-4"><em>Data creazione:</em></div>
                 <div class="col-md-8"><%= @entry.created_at %></div>
               </div>
 
               <div class="row">
-                <div class="col-md-4"><i>Data ultima modifica:</i></div>
+                <div class="col-md-4"><em>Data ultima modifica:</em></div>
                 <div class="col-md-8"><%= @entry.updated_at %></div>
               </div>
 
@@ -43,8 +49,10 @@
                 <div class="col-md-12">&nbsp;</div>
               </div>
 
-              <% if @entry.user.id == session[:current_user_id] %>
-                  <button class="button">Modifica</button>
+              <% if not @entry.user.nil? %>
+                <% if @entry.user.id == session[:current_user_id] %>
+                    <button class="button">Modifica</button>
+                <% end %>
               <% end %>
 
           </div>
