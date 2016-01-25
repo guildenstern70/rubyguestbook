@@ -45,14 +45,17 @@
                   <textarea cols="60" rows="4" readonly="readonly"><%= msg.message %>
                   </textarea>
                 </td>
-                <% if is_logged_in? %>
-                <td>
-                  <div>
-                    <%= link_to msg, method: :delete, :data => {:confirm => 'Sei sicuro di voler cancellare il messaggio?'} do %>
-                      <%= fa_icon 'remove' %>
-                    <% end %>
-                  </div>
-                </td>
+                <% if not msg.user.nil? %>
+                  <% if is_logged_in? and session[:current_user_id] == msg.user.id  %>
+                  <td>
+                    <div>
+                      <%= link_to msg, method: :delete, :data =>
+                          {:confirm => 'Sei sicuro di voler cancellare il messaggio?'} do %>
+                        <%= fa_icon 'remove' %>
+                      <% end %>
+                    </div>
+                  </td>
+                  <% end %>
                 <% end %>
               </tr>
 
