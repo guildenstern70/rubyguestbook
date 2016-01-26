@@ -28,13 +28,20 @@
               </div>
 
               <div class="row">
-                <div class="col-md-12"><%= f.submit('Login') %>
+                <div class="col-md-12"><%= f.submit 'Login', class: 'btn btn-success' %>
                 </div>
               </div>
 
           <% end %>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+      Non sei ancora registrato?
+      <%= link_to 'Registrati ora!', controller: 'users', action: 'new' %>
     </div>
   </div>
 

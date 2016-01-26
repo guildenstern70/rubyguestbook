@@ -1,2 +1,56 @@
-<h1>Entries#edit</h1>
-<p>Find me in app/views/entries/edit.html.erb</p>
+<%= render 'layouts/navbar' %>
+
+<div class="container">
+
+  <h3>
+    Modifica la tua firma sul libro
+  </h3>
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <%= form_for @entry, url: { action: 'update'} do |f| %>
+
+              <div class="row">
+                <div class="col-md-4"><%= f.label :title, 'Titolo:' %></div>
+                <div class="col-md-6"><%= f.text_field :title, value: @entry.title %></div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4"><%= f.label :message, 'Messaggio:' %></div>
+                <div class="col-md-6"><%= f.text_area :message, value: @entry.message %></div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-10">&nbsp;</div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-10"><%= f.submit 'Modifica', class: 'btn btn-danger' %>
+                </div>
+
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <% if @entry.errors.any? %>
+
+        <div class="row">
+          <div class="col-md-8">
+            <div class="alert alert-danger" role="alert">
+              <ul>
+                <% @entry.errors.full_messages.each do |error_msg| %>
+                    <li><%= error_msg %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+    <% end %>
+
+  </div>
+</div>

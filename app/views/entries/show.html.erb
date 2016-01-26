@@ -51,7 +51,7 @@
 
               <% if not @entry.user.nil? %>
                 <% if @entry.user.id == session[:current_user_id] %>
-                    <button class="button">Modifica</button>
+                    <%= link_to 'Modifica', { action: 'edit' }, class: 'btn btn-danger' %>
                 <% end %>
               <% end %>
 
