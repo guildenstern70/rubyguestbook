@@ -20,6 +20,18 @@ class EntriesController < ApplicationController
     end
 
     def edit
+        @entry = Entry.find(params[:id])
+    end
+
+    def update
+        @entry = Entry.find(params[:id])
+        user_data = params.require(:entry).permit(:title, :message)
+        # Se l'operazione di update va a buon fine
+        if @entry.update_attributes(user_data)
+            redirect_to :action => 'index'
+        else
+            render :action => 'edit'
+        end
     end
 
     def new
