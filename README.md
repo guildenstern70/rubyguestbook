@@ -1,16 +1,24 @@
-# rubyguestbook
-Applicazione di esempio contenuta nel libro "Ruby e Rails"
+# Ruby Guestbook
+Applicazione di esempio contenuta nel libro **Ruby e Rails** di _Alessio Saltarin_
 
-# Start MySQL
+### Start MySQL
 
-cd /usr/local/mysql/support-files/
-sudo ./mysql.server start (pwd: qL..)
+Install MySQL and then run it as a demon, ie on MacOSX:
 
-# Create DB
+    cd /usr/local/mysql/support-files/
+    sudo ./mysql.server start 
 
-Run
+### Create DB
+
+Execute
 
     rake db:create
     rake db:migrate
+    
+### Build & Run
+
+Execute
+
+    rails server
     
     
